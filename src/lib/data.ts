@@ -1,4 +1,5 @@
-import { listDriveFiles, getDriveImageUrl } from './drive';
+import fs from 'fs';
+import path from 'path';
 
 export interface FileData {
     src: string;
@@ -11,51 +12,72 @@ export interface SlideData {
     name: string;
     path: string;
     type: "pdf" | "pptx" | "other";
-    download: string;
+    download: string; // For local files, this is the same as path
 }
 
-// Folder IDs from your configuration
-const CONFIG = {
-    sliderFolderId: "1Qr0Tw3CYjlFV7qCU5PpRb8H7cHKGKxZw",
-    photosFolderId: "15wA3ZpWUmWNIebXwE1eTnEmspKtbxO4B",
-    slidesFolderId: "19KacjMxnmi93rmcxYs75HeGrfKx2e8jh",
-};
-
 export async function getSliderImages(): Promise<FileData[]> {
-    const files = await listDriveFiles(CONFIG.sliderFolderId);
-    // Sort by name to respect 01_, 02_ naming
-    files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+    const dir = path.join(process.cwd(), 'public', 'images', 'slider');
+    const files = getFilesFromDir(dir);
 
-    return files.slice(0, 5).map(f => ({
-        name: f.name.replace(/\.[^/.]+$/, "").replace(/_/g, " "),
-        src: getDriveImageUrl(f.id),
+    // Return relative paths for Next.js Image component
+    return files.map(file => ({
+        name: path.parse(file).name.replace(/_/g, " "),
+        src: `/images/slider/${file}`,
     }));
 }
 
 export async function getGalleryPhotos(): Promise<FileData[]> {
-    const files = await listDriveFiles(CONFIG.photosFolderId);
-    files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+    const dir = path.join(process.cwd(), 'public', 'images', 'gallery');
+    const files = getFilesFromDir(dir);
 
-    return files.map(f => ({
-        name: f.name.replace(/\.[^/.]+$/, "").replace(/_/g, " "),
-        src: getDriveImageUrl(f.id),
-        viewLink: `https://drive.google.com/file/d/${f.id}/view`,
-        downloadLink: `https://drive.google.com/uc?export=download&id=${f.id}`
-    }));
+    return files.map(file => {
+        const src = `/images/gallery/${file}`;
+        return {
+            name: path.parse(file).name.replace(/_/g, " "),
+            src: src,
+            viewLink: src, // Local file link
+            downloadLink: src // Local file download
+        };
+    });
 }
 
 export async function getSlides(): Promise<SlideData[]> {
-    const files = await listDriveFiles(CONFIG.slidesFolderId);
+    const dir = path.join(process.cwd(), 'public', 'slides');
 
-    return files.map(f => {
-        const isPpt = f.mimeType.includes("presentation") || f.mimeType.includes("powerpoint");
-        const isPdf = f.mimeType.includes("pdf");
+    if (!fs.existsSync(dir)) return [];
+
+    const files = fs.readdirSync(dir).filter(f => !f.startsWith('.'));
+
+    // Alpha-numeric sort
+    files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+
+    return files.map(file => {
+        const ext = path.extname(file).toLowerCase();
+        const isPdf = ext === '.pdf';
+        const isPpt = ext === '.pptx' || ext === '.ppt';
+        const src = `/slides/${file}`;
 
         return {
-            name: f.name.replace(/\.[^/.]+$/, ""),
-            path: `https://drive.google.com/file/d/${f.id}/view`,
+            name: path.parse(file).name.replace(/_/g, " "),
+            path: src,
             type: isPdf ? 'pdf' : (isPpt ? 'pptx' : 'other'),
-            download: `https://drive.google.com/uc?export=download&id=${f.id}`
+            download: src
         };
     });
+}
+
+// Helper to safely read and sort files
+function getFilesFromDir(dirPath: string): string[] {
+    if (!fs.existsSync(dirPath)) return [];
+
+    const files = fs.readdirSync(dirPath).filter(file => {
+        const ext = path.extname(file).toLowerCase();
+        // Only images
+        return ['.jpg', '.jpeg', '.png', '.webp', '.gif'].includes(ext);
+    });
+
+    // Alphabetical / Natural Sort (1.jpg, 2.jpg, 10.jpg)
+    files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+
+    return files;
 }

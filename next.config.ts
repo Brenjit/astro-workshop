@@ -1,23 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // output: "export", // Commented out for Vercel (Enables Image Optimization)
+  output: "export", // Required for GitHub Pages
   images: {
-    unoptimized: true, // Bypass optimization to fix Google Drive redirects
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "drive.google.com",
-      },
-      {
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "googleusercontent.com",
-      },
-    ],
+    unoptimized: true, // Required for GitHub Pages (no server/image optimization)
   },
 };
 

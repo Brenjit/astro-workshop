@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  // output: "export", // Commented out for Vercel (Enables Image Optimization)
   images: {
-    unoptimized: true,
+    unoptimized: true, // Bypass optimization to fix Google Drive redirects
     remotePatterns: [
       {
         protocol: "https",

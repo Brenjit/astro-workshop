@@ -1,26 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* User's Original Palette */
+  --bg: #f4f6f9;
+  --text: #111827;
+  --muted: #4b5563;
+  --card: #ffffff;
+  --line: #e5e7eb;
+
+  --accent: #b91c1c;      /* crimson */
+  --accent2: #ef4444;
+
+  --shadow: 0 10px 25px rgba(0,0,0,.08);
+  --radius: 14px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-workshop-bg: var(--bg);
+  --color-workshop-text: var(--text);
+  --color-workshop-muted: var(--muted);
+  --color-workshop-card: var(--card);
+  --color-workshop-line: var(--line);
+  --color-workshop-accent: var(--accent);
+  --color-workshop-accent2: var(--accent2);
+  
+  --radius-workshop: var(--radius);
+  --shadow-workshop: var(--shadow);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
 }

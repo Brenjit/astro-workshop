@@ -1,13 +1,16 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+const repoName = "/astro-workshop";
+
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "/astro-workshop", // Needed for GitHub Pages subdirectory
+  basePath: isProd ? repoName : undefined,
   images: {
     unoptimized: true,
   },
   env: {
-    NEXT_PUBLIC_BASE_PATH: "/astro-workshop",
+    NEXT_PUBLIC_BASE_PATH: isProd ? repoName : "",
   },
 };
 

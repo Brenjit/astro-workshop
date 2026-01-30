@@ -15,6 +15,10 @@ export interface SlideData {
     download: string; // For local files, this is the same as path
 }
 
+// Base path for GitHub Pages (only used in production)
+// In dev, it's empty. In prod (GitHub), it's /astro-workshop
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 export async function getSliderImages(): Promise<FileData[]> {
     const dir = path.join(process.cwd(), 'public', 'images', 'slider');
     const files = getFilesFromDir(dir);
@@ -22,7 +26,7 @@ export async function getSliderImages(): Promise<FileData[]> {
     // Return relative paths for Next.js Image component
     return files.map(file => ({
         name: path.parse(file).name.replace(/_/g, " "),
-        src: `/images/slider/${file}`,
+        src: `${BASE_PATH}/images/slider/${file}`,
     }));
 }
 
@@ -31,7 +35,7 @@ export async function getGalleryPhotos(): Promise<FileData[]> {
     const files = getFilesFromDir(dir);
 
     return files.map(file => {
-        const src = `/images/gallery/${file}`;
+        const src = `${BASE_PATH}/images/gallery/${file}`;
         return {
             name: path.parse(file).name.replace(/_/g, " "),
             src: src,
@@ -55,7 +59,7 @@ export async function getSlides(): Promise<SlideData[]> {
         const ext = path.extname(file).toLowerCase();
         const isPdf = ext === '.pdf';
         const isPpt = ext === '.pptx' || ext === '.ppt';
-        const src = `/slides/${file}`;
+        const src = `${BASE_PATH}/slides/${file}`;
 
         return {
             name: path.parse(file).name.replace(/_/g, " "),

@@ -70,6 +70,7 @@ export function GalleryGrid({ photos }: GalleryGridProps) {
                                 fill
                                 className="object-cover transition-transform duration-300 group-hover:scale-110"
                                 sizes="(max-width: 768px) 50vw, 25vw"
+                                unoptimized
                             />
                         </motion.div>
                     ))}
@@ -123,6 +124,7 @@ export function GalleryGrid({ photos }: GalleryGridProps) {
                                     alt={selectedPhoto.name}
                                     fill
                                     className="object-contain"
+                                    unoptimized
                                 />
                             </div>
                         </motion.div>

@@ -92,6 +92,7 @@ export function ImageSlider({ images, autoPlayInterval = 4000 }: ImageSliderProp
                             fill
                             className="object-cover"
                             priority={currentIndex === 0}
+                            unoptimized
                         />
                     </div>
                 </motion.div>

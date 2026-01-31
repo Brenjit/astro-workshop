@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface HeaderProps {
   title: string;
@@ -11,6 +12,15 @@ interface HeaderProps {
 export function Header({ title, subtitle, dates, venue, contactEmail }: HeaderProps) {
   return (
     <header className="bg-gradient-to-br from-workshop-accent to-[#7f1d1d] text-white py-8 px-6 md:px-[10%] text-center shadow-lg">
+      <div className="flex justify-center mb-6">
+        <Image
+          src="/logos.svg"
+          alt="Institute Logos"
+          width={400}
+          height={100}
+          className="h-16 md:h-20 w-auto"
+        />
+      </div>
       <h1 className="text-3xl md:text-4xl font-black mb-3 tracking-tight">
         {title}
       </h1>

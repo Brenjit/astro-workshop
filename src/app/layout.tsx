@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Workshop on Introduction to Astronomy & Astrophysics",
-  description: "IIT Tirupati & IISER Tirupati | Workshop Archive",
+  description: "IIT Tirupati & IISER Tirupati | In Collaboration with IUCAA",
 };
 
 export default function RootLayout({

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 
 interface HeaderProps {
   title: string;
@@ -14,7 +15,7 @@ export function Header({ title, subtitle, dates, venue, contactEmail }: HeaderPr
     <header className="bg-gradient-to-br from-workshop-accent to-[#7f1d1d] text-white py-8 px-6 md:px-[10%] text-center shadow-lg">
       <div className="flex justify-center mb-6">
         <Image
-          src="/logos.svg"
+          src={getAssetPath("/logos.svg")}
           alt="Institute Logos"
           width={175}
           height={48}

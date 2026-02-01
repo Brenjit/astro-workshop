@@ -9,7 +9,7 @@ const CONFIG = {
   title: "Workshop on Introduction to Astronomy & Astrophysics",
   subtitle: "Department of Physics, IIT Tirupati | In Collaboration with IISER Tirupati & IUCAA",
   dates: "24–25 January 2026",
-  venue: "IIT Tirupati, Tirupati",
+  venue: "IIT Tirupati",
   contactEmail: "aa_workshop_2026@iittp.ac.in",
 };
 

@@ -13,8 +13,8 @@ export function IntroSection({ dates, venue, contactEmail }: IntroSectionProps) 
                 Workshop Archive
             </h2>
             <p className="leading-relaxed text-lg text-gray-700 mb-4">
-                This page hosts the official <b>slides</b> and a <b>photo gallery</b> from the Workshop on Introduction to Astronomy & Astrophysics
-                conducted on {dates} at {venue} in collaboration with IISER Tirupati & IUCAA.
+                This page hosts the official <b>slides</b> and a <b>photo gallery</b> from the Workshop on Introduction to Astronomy & Astrophysics,
+                conducted on {dates} at {venue}, in collaboration with IISER Tirupati & IUCAA.
             </p>
             <p className="leading-relaxed text-lg text-gray-700 mb-4">
                 For any queries, please email{" "}

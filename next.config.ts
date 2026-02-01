@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export", // Required for GitHub Pages
+  basePath: process.env.NODE_ENV === "production" ? "/astro-workshop" : "",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/astro-workshop/" : "",
   images: {
     unoptimized: true, // Required for Google Drive redirects
     remotePatterns: [

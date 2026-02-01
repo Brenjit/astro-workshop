@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // output: "export", // Commented out for Vercel
+  output: "export", // Required for GitHub Pages
   images: {
     unoptimized: true, // Required for Google Drive redirects
     remotePatterns: [

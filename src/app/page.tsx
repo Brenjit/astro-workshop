@@ -7,7 +7,7 @@ import { getSliderImages, getGalleryPhotos, getSlides } from "@/lib/data";
 
 const CONFIG = {
   title: "Workshop on Introduction to Astronomy & Astrophysics",
-  subtitle: "Department of Physics, IIT Tirupati | In Collaboration with IUCAA & IISER Tirupati",
+  subtitle: "Department of Physics, IIT Tirupati | In Collaboration with IISER Tirupati & IUCAA",
   dates: "24–25 January 2026",
   venue: "IIT Tirupati, Tirupati",
   contactEmail: "aa_workshop_2026@iittp.ac.in",

@@ -16,8 +16,8 @@ export function Header({ title, subtitle, dates, venue, contactEmail }: HeaderPr
         <Image
           src="/logos.svg"
           alt="Institute Logos"
-          width={400}
-          height={100}
+          width={175}
+          height={48}
           className="h-16 md:h-20 w-auto"
         />
       </div>

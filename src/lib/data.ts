@@ -50,6 +50,9 @@ export async function getGalleryPhotos(): Promise<FileData[]> {
 export async function getSlides(): Promise<SlideData[]> {
     const files = await listDriveFiles(CONFIG.slidesFolderId);
 
+    // Sort by name to respect 01_, 02_ naming
+    files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+
     return files.map(f => {
         const isPpt = f.mimeType.includes("presentation") || f.mimeType.includes("powerpoint");
         const isPdf = f.mimeType.includes("pdf");

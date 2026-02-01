@@ -8,7 +8,7 @@ export function Footer({ contactEmail }: FooterProps) {
     return (
         <footer className="bg-[#7f1d1d] text-white text-center py-6 px-4 md:px-[10%] text-sm md:text-base">
             <p className="mb-2">
-                © {new Date().getFullYear()} Workshop Archive | Designed by Brenjit Hazarika
+                © {new Date().getFullYear()} Workshop Archive | Designed by Bren_jit
             </p>
             <p>
                 Contact:{" "}
